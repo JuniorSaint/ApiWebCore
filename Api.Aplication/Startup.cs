@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Api.CrossCutting.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Aplication
 {
@@ -26,6 +28,8 @@ namespace Api.Aplication
         public void ConfigureServices(IServiceCollection services)
         {
 
+            ConfigureService.ConfigureDependenciesService(services);
+            ConfigureRepository.ConfigureDependenciesRepository(services);
             services.AddControllers();
         }
 
