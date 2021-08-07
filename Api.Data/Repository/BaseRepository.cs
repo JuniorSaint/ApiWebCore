@@ -11,36 +11,36 @@ namespace Api.Data.Repository
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly MyContext _context;
-        private DbSet<T> _dataSet;
-
+        private DbSet<T> _dataset;
         public BaseRepository(MyContext context)
         {
             _context = context;
-            _dataSet = _context.Set<T>();
+            _dataset = _context.Set<T>();
         }
-
-        public async Task<bool> ExistAsync(Guid id)
-        {
-            return await _dataSet.AnyAsync(p => p.Id.Equals(id));
-        }
-
         public async Task<bool> DeleteAsync(Guid id)
         {
-            try { 
-                var result = await _dataSet.SingleOrDefaultAsync(p => p.Id.Equals(id));
-                 if (result == null) return false;
+            try
+            {
+                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
+                if (result == null)
+                {
+                    return false;
+                }
 
-                _dataSet.Remove(result);
+                _dataset.Remove(result);
                 await _context.SaveChangesAsync();
                 return true;
 
             }
             catch (Exception )
             {
-                throw;
+                throw ;
             }
+        }
 
-            return true;
+        public async Task<bool> ExistAsync(Guid id)
+        {
+            return await _dataset.AnyAsync(p => p.Id.Equals(id));
         }
 
         public async Task<T> InsertAsync(T item)
@@ -51,15 +51,18 @@ namespace Api.Data.Repository
                 {
                     item.Id = Guid.NewGuid();
                 }
-                item.CreatedAt = DateTime.UtcNow;
-                _dataSet.Add(item);
+
+                item.CreateAt = DateTime.UtcNow;
+                _dataset.Add(item);
 
                 await _context.SaveChangesAsync();
+
             }
             catch (Exception )
             {
                 throw ;
             }
+
             return item;
         }
 
@@ -67,39 +70,38 @@ namespace Api.Data.Repository
         {
             try
             {
-                return await _dataSet.SingleOrDefaultAsync(p => p.Id.Equals(id));
+                return await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
             }
             catch (Exception )
             {
                 throw ;
             }
-
         }
 
         public async Task<IEnumerable<T>> SelectAsync()
         {
             try
             {
-                return await _dataSet.ToListAsync();
+                return await _dataset.ToListAsync();
             }
             catch (Exception )
             {
                 throw ;
             }
-
-            
         }
 
         public async Task<T> UpdateAsync(T item)
         {
             try
             {
-                var result = await _dataSet.SingleOrDefaultAsync(p => p.Id.Equals(item.Id));
-
-                if (result == null) return null;
+                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(item.Id));
+                if (result == null)
+                {
+                    return null;
+                }
 
                 item.UpdateAt = DateTime.UtcNow;
-                item.CreatedAt = result.CreatedAt;
+                item.CreateAt = result.CreateAt;
 
                 _context.Entry(result).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
@@ -109,6 +111,7 @@ namespace Api.Data.Repository
             {
                 throw ;
             }
+
             return item;
         }
     }

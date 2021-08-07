@@ -16,5 +16,7 @@ namespace Api.Domain.Entities
 
             set { _createAt = (value == null ? DateTime.UtcNow : value); }
         }
+
+        public DateTime CreateAt { get; set; }
     }
 }
