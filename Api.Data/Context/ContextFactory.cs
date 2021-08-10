@@ -13,10 +13,6 @@ namespace Api.Data.Context
         private static string Password = "123456";
         private static string Port = "5432";
 
-        public ContextFactory()
-        {
-        }
-
         public MyContext CreateDbContext(string[] args)   // Usado para criar as migrations
         {
             var connectionString = $"Server={Host}; Port={Port}; Database={DBname}; Uid={User}; Pwd={Password}";
