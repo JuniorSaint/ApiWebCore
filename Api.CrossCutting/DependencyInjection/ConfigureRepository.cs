@@ -13,8 +13,13 @@ namespace Api.CrossCutting.DependencyInjection
     {
         public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection)
         {
+
             serviceCollection.AddScoped(typeof (IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
+            serviceCollection.AddScoped<IUfRepository, UfImplementation>();
+            serviceCollection.AddScoped<ICodeZipRepository, CodeZipImplementation>();
+            serviceCollection.AddScoped<ICityRepository, CityImplementation>();
+
 
             serviceCollection.AddDbContext<MyContext>(
                  options => options.UseNpgsql("Server=localhost; Port=5432; Database=ApiTeste; Uid=Junior; Pwd=123456")

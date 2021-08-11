@@ -7,7 +7,6 @@
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="Interfaces\" />
-    <None Remove="Interfaces\User\" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
@@ -15,14 +14,33 @@
     <None Remove="Dtos\" />
     <None Remove="System.IdentityModel.Tokens.Jwt" />
     <None Remove="Security\" />
+    <None Remove="Models\" />
+    <None Remove="Dtos\User\" />
+    <None Remove="Dtos\Uf\" />
+    <None Remove="Dtos\CodeZip\" />
+    <None Remove="Dtos\City\" />
+    <None Remove="Interfaces\Services\" />
+    <None Remove="Interfaces\Services\User\" />
+    <None Remove="Interfaces\Services\Uf\" />
+    <None Remove="Interfaces\Services\City\" />
+    <None Remove="Interfaces\Services\CodeZip\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Interfaces\User\" />
     <Folder Include="IRepository\" />
     <Folder Include="Dtos\" />
     <Folder Include="Security\" />
+    <Folder Include="Models\" />
+    <Folder Include="Dtos\User\" />
+    <Folder Include="Dtos\Uf\" />
+    <Folder Include="Dtos\CodeZip\" />
+    <Folder Include="Dtos\City\" />
+    <Folder Include="Interfaces\Services\" />
+    <Folder Include="Interfaces\Services\User\" />
+    <Folder Include="Interfaces\Services\Uf\" />
+    <Folder Include="Interfaces\Services\City\" />
+    <Folder Include="Interfaces\Services\CodeZip\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
