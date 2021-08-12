@@ -55,7 +55,7 @@ namespace Api.Aplication.Controllers
 
         [Authorize("Bearer")]
         [HttpGet]
-        [Route("{id}")]
+        [Route("byId/{id}")]
         public async Task<ActionResult> GetCompleteById(Guid id)
         {
             try

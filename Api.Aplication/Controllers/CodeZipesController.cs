@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Api.Domain.Dtos.City;
 using Api.Domain.Dtos.CodeZip;
-using Api.Domain.Interfaces.Services.City;
 using Api.Domain.Interfaces.Services.CodeZip;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -40,9 +38,9 @@ namespace Api.Aplication.Controllers
             }
         }
 
-        [AllowAnonymous]
+        
         [HttpGet]
-        [Route("{zipCode}")]
+        [Route("byZip/{zipCode}")]
         public async Task<ActionResult> Get(string zipCode)
         {
             try
