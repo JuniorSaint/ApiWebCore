@@ -46,6 +46,8 @@ namespace application
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);
 
+            #region     Configuração do Token
+
             var tokenConfigurations = new TokenConfigurations();
             new ConfigureFromConfigurationOptions<TokenConfigurations>(
                 Configuration.GetSection("TokenConfigurations"))
@@ -83,6 +85,8 @@ namespace application
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
                     .RequireAuthenticatedUser().Build());
             });
+
+            #endregion
 
             services.AddSwaggerGen();
         }
